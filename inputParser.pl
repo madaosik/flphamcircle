@@ -1,3 +1,11 @@
+/** Functional and logical programming 2020/2021
+
+Hamilton Cycle in Prolog
+author: Martin Hyrs, ihyrs@fit.vutbr.cz
+
+Input processing module provided along with the assignment
+*/
+
 :- module(inputParser,[read_lines/1, isEOFEOL/1, split_lines/2]).
 
 /** cte radky ze standardniho vstupu, konci na LF nebo EOF */
