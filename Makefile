@@ -24,7 +24,7 @@ test:
 
 test_long: build
 	@printf "\e[1;35mLONG TEST INPUT:\e[0m \n"
-	cat testIn/5.in
+	@cat testIn/5.in
 	@echo ""
 	@printf "\e[1;35mLONG TEST OUTPUT:\e[0m \n"
 	@./flp20-log < ./testIn/5.in
