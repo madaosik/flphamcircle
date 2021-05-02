@@ -14,20 +14,20 @@ compareOutput(Out,CorrOutput) :-
 	write('Actual output:\t'),write(Out),nl,
 	(
 		Out == CorrOutput,
-		write("\e[1;32mSUCCESS!\e[0m"),nl,nl
+		write('\e[1;32mSUCCESS!\e[0m'),nl,nl
 	)
 	;
-	write("\e[1;31mFAIL!\e[0m"),nl,nl.
+	write('\e[1;31mFAIL!\e[0m'),nl,nl.
 
 test_hamCycle :-
-	write("\e[1;33mhamCycle/5 predicate with the sample assignment input\e[0m"),
+	write('\e[1;33mhamCycle/5 predicate with the sample assignment input\e[0m'),
 	test_init(FirstVert,EdgeArr,VertLen),
 	!,
 	hamCycle(FirstVert,EdgeArr,VertLen,[FirstVert],Cycles), nl, !,
 	compareOutput(Cycles,['A','B','C','D']).
 
 test_getAllHamCycles :-
-	write("\e[1;33mgetAllHamCycles/5 predicate with the sample assignment input\e[0m"),
+	write('\e[1;33mgetAllHamCycles/5 predicate with the sample assignment input\e[0m'),
 	test_init(FirstVert,EdgeArr,VertLen),
 	getAllHamCycles(FirstVert, EdgeArr, VertLen, [], HamCycles), nl,
 	compareOutput(HamCycles,[['A','B','C','D'],['A','B','D','C'],['A','C','B','D']]).

@@ -12,12 +12,12 @@ default:
 	@./flp20-log < ./testIn/0.in
 
 test:
-	@echo "\e[1;35mUNIT TESTS\e[0m \n"
+	@printf "\e[1;35mUNIT TESTS\e[0m \n"
 	@swipl -q --goal=${TEST_GOAL} -o ${TARGET} -c ${SOURCE} ${TEST_MODULE}
 	@./flp20-log
-	@echo "\e[1;35m----------------------------------------------------------\e[0m \n"
+	@printf "\e[1;35m----------------------------------------------------------\e[0m \n"
 	@swipl -q --goal=${GOAL} -o ${TARGET} -c ${SOURCE}
-	@echo "\e[1;35mOVERALL TESTS WITH DIFFERENT GRAPH INPUTS\e[0m \n"
+	@printf "\e[1;35mOVERALL TESTS WITH DIFFERENT GRAPH INPUTS\e[0m \n"
 	@./test_runner		
 
 pack:
