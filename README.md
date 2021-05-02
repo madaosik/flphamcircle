@@ -9,8 +9,9 @@ Launching the program using the Make utility:
 	
 - **make** - program build & launch with the assignment reference test input (testIn/0.in)
 
-- **make test** (2 sec) - program build & unit tests of hamCycle/5 and getAllHamCycles/5 predicates (as defined in _testModule.pl_) & 
-    4 different program launches using the following inputs compared to the reference output using the _diff_ utility:
+- **make test** (2 sec)
+    - program build with _test_ goal & unit tests of hamCycle/5 and getAllHamCycles/5 predicates (as defined in _testModule.pl_)
+    - program build with _start_ goal & 4 different program launches using the following inputs compared to the reference output using the _diff_ utility:
 
     -- _testIn/0.in_: reference input (provided in the assignment)
     
