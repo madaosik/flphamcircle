@@ -12,7 +12,23 @@ Main module defining the control flow predicates.
 
 test :-
 	test_hamCycle,
+    test_getAllHamCycles,
 	halt.
+
+writeCycle([]).
+writeCycle([_]).
+writeCycle([V1,V2|RestVert]) :-
+	write(V1), write('-'), write(V2), write(' '),
+	writeCycle([V2|RestVert]).
+
+writeCycles(_, []).
+writeCycles(FirstVert, [HamCycle|T]) :- 
+	writeCycle(HamCycle), writeFinalEdge(FirstVert, HamCycle), writeCycles(FirstVert,T).
+
+writeFinalEdge(FirstVert,HamCycle) :-
+	reverse(HamCycle,[RevHead|_]),
+	write(RevHead),write('-'),write(FirstVert),nl.
+
 
 start :- 
 	prompt(_, ''),
@@ -21,11 +37,9 @@ start :-
 	flatten(EdgeArr,FlatVert),
 	sort(FlatVert,SortedFlat),
 	length(SortedFlat,VertLen),
-	% Get first vertex and prevent obtaining the same paths with different start point
-	member(FirstVert,SortedFlat), !,
-	%find_hamCycles(VertLen,FirstVert,VertArr,[],Cycles),
-	hamCycle(FirstVert,EdgeArr,VertLen,[FirstVert],Cycles),
-	%hamCycle('A',[[['A'], ['B']], [['A'], ['C']], [['A'], ['D']], [['B'], ['C']], [['B'], ['D']], [['C'], ['D']]],4,['A'],Cycles),
-	write(Cycles),
-	nl,
+	member(FirstVert,SortedFlat),
+	% Make sure not to get the same paths with different starting point
+	!,
+	getAllHamCycles(FirstVert, EdgeArr, VertLen, [], HamCycles),
+	writeCycles(FirstVert, HamCycles),
 	halt.

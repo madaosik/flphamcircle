@@ -1,0 +1,38 @@
+#!/bin/bash
+
+COMMAND="./flp20-log"
+
+for testNum in {0..4}
+do
+    if (( testNum == 0 ));
+    then 
+        printf "\e[1;33mSample test graph from the project assignment, 3 Hamiltonian cycles expected\e[0m\n";
+    elif (( testNum == 1 ));
+    then 
+        printf "\e[1;33mRunning simple circle graph (vertices connected in a circle), 1 Ham. cycle expected\e[0m\n";
+    elif (( testNum == 2 ));
+    then
+        printf "\e[1;33mRunning simple line graph (vertices connected in a line), no Ham. cycle expected\e[0m\n";
+    elif (( testNum == 3 ));
+    then
+        printf "\e[1;33mRunning Petersen graph, no Ham. cycle expected\e[0m\n";
+    elif (( testNum == 4 ));
+    then
+        printf "\e[1;33mRunning unit planar graph, 6 Ham. cycles expected\e[0m\n";
+    fi;
+
+    echo "Input:"
+    cat testIn/${testNum}.in
+    echo ""
+    ${COMMAND} < testIn/${testNum}.in > testOut/temp.out
+    echo "Expected output:"
+    cat testOut/${testNum}.out
+    echo ""
+    echo "Actual output:"
+    cat testOut/temp.out
+    diff testOut/${testNum}.out testOut/temp.out
+    rm testOut/temp.out
+    echo ""
+    [ $? -eq 0 ] && printf "\e[1;32m----- SUCCESS -----\e[0m" || printf "\e[1;31m----- FAIL -----\e[0m"
+    printf "\n\n"
+done
